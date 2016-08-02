@@ -1,0 +1,13 @@
+{
+  "globalDependencies": {
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654",
+    "express": "registry:dt/express#4.0.0+20160208031452",
+    "mysql": "registry:dt/mysql#0.0.0+20160118105930",
+    "node": "registry:dt/node#6.0.0+20160514165920",
+    "q": "registry:dt/q#0.0.0+20160215162030",
+    "winston": "registry:dt/winston#0.0.0+20160417152829"
+  },
+  "dependencies": {
+    "chai": "registry:npm/chai#3.5.0+20160415060238"
+  }
+}
