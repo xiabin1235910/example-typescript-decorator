@@ -3,16 +3,14 @@
  */
 import {baseDomainObject} from "../entity/baseDomainObject";
 import {baseDB} from "../../db/baseDB";
-import * as mysql from "mysql";
 import {serviceServerDB} from "../../db/serviceServerDB";
 
 export abstract class baseRepository<T extends baseDomainObject> {
-    serviceDB: serviceServerDB = serviceServerDB;
+    serviceDB: serviceServerDB = serviceServerDB.getInstance();
     domainObject: T;
 
     constructor(protected _domainObject) {
         this.domainObject = new this._domainObject();
-        this.serviceDB = serviceServerDB.serviceDB;
     }
 
     insert(objectToInsert:T):Q.Promise<number> {
