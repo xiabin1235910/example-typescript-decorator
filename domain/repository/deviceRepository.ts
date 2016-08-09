@@ -5,7 +5,16 @@ import {baseRepository} from "./baseRepository";
 import {Device} from "../entity/Device";
 import {Query} from "../decorator/Query";
 export class deviceRepository extends baseRepository<Device> {
-    
+    private static _instance: deviceRepository = new deviceRepository();
+
+    constructor() {
+        super(Device);
+    }
+
+    public static getInstance(): deviceRepository {
+        return deviceRepository._instance;
+    }
+
     @Query({
         sql: "select d.*,ud.alias,ud.type from Repository d ,ekey ud where d.id = ud.device_id and (ud.type=0 or ud.type=1) and ud.user_id=?"
     })

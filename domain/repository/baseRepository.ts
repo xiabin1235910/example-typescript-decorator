@@ -26,6 +26,19 @@ export abstract class baseRepository<T extends baseDomainObject> {
         return defer.promise;
     }
 
+    listAll():Q.Promise<Array<T>> {
+        let defer = Q.defer<Array<T>>();
+        let db = this.getDB();
+        db.query(
+            "select * from " + this.domainObject.getTableName(),
+            [],
+            defer,
+            (rows)=> {
+                defer.resolve(rows)
+            });
+        return defer.promise;
+    }
+
 
     // util
     protected getDB():baseDB {
