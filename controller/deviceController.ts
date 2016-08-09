@@ -6,10 +6,10 @@ import {Device} from "../domain/entity/Device";
 import {baseDomainObject} from "../domain/entity/baseDomainObject";
 import {deviceRepository} from "../domain/repository/deviceRepository";
 
-export class deviceController extends baseCRUDController<Device> {   
+export class deviceController extends baseCRUDController<Device, deviceRepository> {
     
     constructor() {
-        super(Device);
+        super(Device, deviceRepository);
     }
     
     initRouter() {
@@ -22,7 +22,7 @@ export class deviceController extends baseCRUDController<Device> {
             deviceRepository.getInstance()
                 .queryByDeviceMeid(req.params.meid)
                 .then(
-                    (result) => res.status(200).jsonp(result),
+                    (result) => res.status(200).json(result),
                     (error) => this.handleError(error, res)
                 );
         })
