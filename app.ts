@@ -3,6 +3,7 @@
  */
 import {deviceController} from "./controller/deviceController";
 import * as winston from "winston";
+import {serviceServerDB} from "./db/serviceServerDB";
 
 var express = require('express');
 var path = require('path');
@@ -12,6 +13,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var app = express();
+
+// init db
+serviceServerDB.init();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

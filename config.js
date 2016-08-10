@@ -3,7 +3,7 @@ var config = {};
 
 config.port = 3000;
 
-var db_server = "localhost";
+var db_server = "rat080";
 var db_user = "root";
 var db_password = "";
 
