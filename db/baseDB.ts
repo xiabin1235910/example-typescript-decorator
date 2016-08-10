@@ -3,6 +3,7 @@
  */
 import * as mysql from 'mysql';
 import * as winston from 'winston';
+
 export abstract class baseDB {
     protected static createPool(cfg, name):mysql.IPool {
         let pool = mysql.createPool({
@@ -17,9 +18,24 @@ export abstract class baseDB {
         return pool;
     }
 
-    constructor() {
-
-    }
+    constructor() {}
     
-    abstract getPool(param: any):mysql.IPool;
+    abstract getPool(param?: any):mysql.IPool;
+
+    query(sql:string, param: any, defer: Q.Deferred<any>, callback:(rows: any, defer?: Q.Deferred<any>) => void) {
+        this.getPool().query(
+            sql, param, (err, rows)=> {
+                if (err) {
+                    winston.error("while execute SQL: " + sql);
+                    winston.error("with params: " + JSON.stringify(param));
+                    winston.error(err.toString());
+                    defer.reject(new Error("ERR_DB"));
+                } else {
+                    if (callback) {
+                        callback(rows, defer);
+                    }
+                }
+            }
+        );
+    }
 }
