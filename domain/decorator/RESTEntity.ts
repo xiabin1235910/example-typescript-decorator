@@ -7,10 +7,8 @@ export interface RESTEntityOption {
 }
 
 export function RESTEntity(option:RESTEntityOption) {
-    return function (target: any) {
-        return function decorator(target) {
-            target.prototype.getTableName = ()=>option.table;
-            target.prototype.getRESTUrl = ()=>option.URL;
-        };
-    }
+    return function decorator(target:any) {
+        target.prototype.getTableName = ()=>option.table;
+        target.prototype.getRESTUrl = ()=>option.URL;
+    };
 }
