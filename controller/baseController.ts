@@ -13,19 +13,27 @@ export abstract class baseController{
 
     abstract initRouter();
 
+    getRouter() {
+        return this.router;
+    }
+
     get(url: string, callback:(req, res, next)=>void) {
+        winston.info("router get method, url: " + url);
         this.router.get(url, callback);
     }
     
     post(url: string, callback:(req, res, next)=>void) {
+        winston.info("router post method, url: " + url);
         this.router.post(url, callback);
     }
 
     put(url: string, callback:(req, res, next)=>void) {
+        winston.info("router put method, url: " + url);
         this.router.put(url, callback);
     }
 
     delete(url: string, callback:(req, res, next)=>void) {
+        winston.info("router delete method, url: " + url);
         this.router.delete(url, callback);
     }
 

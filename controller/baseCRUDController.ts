@@ -16,7 +16,8 @@ export abstract class baseCRUDController<R extends baseDomainObject, T extends b
     }
 
     createCRUD() {
-        let domainObject = this._domainObject();
+        let domainObject = new this._domainObject();
+
         let restUrl = domainObject.getRESTUrl();
 
         this.get(restUrl, (req, res, next)=> {
