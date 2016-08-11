@@ -1,6 +1,7 @@
 /**
  * Created by Ben on 8/1/2016.
  */
+import * as Q from "q";
 import {baseDomainObject} from "../entity/baseDomainObject";
 import {baseDB} from "../../db/baseDB";
 import {serviceServerDB} from "../../db/serviceServerDB";
